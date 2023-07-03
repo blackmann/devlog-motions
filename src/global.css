@@ -1,0 +1,11 @@
+@font-face {
+	font-family: "Zed Mono";
+	src: url("/zed-mono/zed-mono-regular.woff2");
+}
+
+@font-face {
+	font-family: "Zed Mono";
+	src: url("/zed-mono/zed-mono-bold.woff2");
+	font-weight: 700;
+}
+
