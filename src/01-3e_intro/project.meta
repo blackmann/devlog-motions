@@ -3,8 +3,8 @@
   "shared": {
     "background": "rgba(0,0,0,0)",
     "range": [
-      18.837942262411346,
-      29.737942262411348
+      0,
+      null
     ],
     "size": {
       "x": 1900,
@@ -18,13 +18,13 @@
   },
   "rendering": {
     "fps": 60,
-    "resolutionScale": 1,
+    "resolutionScale": 0.5,
     "colorSpace": "srgb",
     "exporter": {
       "name": "@motion-canvas/ffmpeg",
       "options": {
         "fastStart": true,
-        "includeAudio": false
+        "includeAudio": true
       }
     }
   }

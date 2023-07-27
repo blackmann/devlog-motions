@@ -132,7 +132,11 @@ function App() {
 
   yield* mouse().release()
 
-  yield* all(fileRef().height(0, 0.3), fileRef().width(400, 0.3))
+  yield* all(
+    fileRef().height(0, 0.3),
+    fileRef().width(400, 0.3),
+    fileRef().radius(2, 0.3 )
+  )
 
   yield* modelContainerRef().height(55, 0.5)
   const modelFile = createRef<Rect>()
