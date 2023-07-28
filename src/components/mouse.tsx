@@ -13,7 +13,7 @@ class Mouse extends Node {
   }
 
   *leave() {
-    yield* this.opacity(0, 0.5, easeInCubic)
+    yield* this.opacity(0, 0.8, easeInCubic)
   }
 
   *press() {

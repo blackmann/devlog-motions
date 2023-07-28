@@ -135,7 +135,7 @@ function App() {
   yield* all(
     fileRef().height(0, 0.3),
     fileRef().width(400, 0.3),
-    fileRef().radius(2, 0.3 )
+    fileRef().radius(2, 0.3)
   )
 
   yield* modelContainerRef().height(55, 0.5)
@@ -150,7 +150,9 @@ function App() {
 
   yield* waitFor(1)
 
-  yield* codeblock().edit(1)`
+  yield* sequence(
+    1,
+    codeblock().edit(1)`
 function Mesh() {
   ${insert(`const glb = useGltf(
     '/sketchfab-racer-model.glb'
@@ -167,7 +169,10 @@ function App() {
       <Mesh />
     </Canvas>
   )
-}`
+}`,
+    mouse().position([400, -200], 1),
+    mouse().leave()
+  )
 
   yield* waitUntil('codeoptionends')
 })

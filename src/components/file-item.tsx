@@ -21,7 +21,7 @@ function FileItem({ indent = 0, name, selected, type = 'file' }: Props) {
       marginLeft={indent * 32 + (isFolder ? 0 : 20)}
       radius={8}
     >
-      <Txt fill={secondary}>{icon + name}</Txt>
+      <Txt fill={secondary()}>{icon + name}</Txt>
     </Rect>
   )
 }
