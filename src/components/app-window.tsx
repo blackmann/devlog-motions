@@ -94,6 +94,14 @@ class AppWindow extends Node {
   *makeInactive() {
     yield* this.windowShell().fill('#222', 0.1)
   }
+
+  *makeActive() {
+    yield* this.windowShell().fill('#444', 0.1)
+  }
+
+  *growWindow(width: number, height: number) {
+    yield* this.windowShell().size([width, height], 0.5)
+  }
 }
 
 export default AppWindow

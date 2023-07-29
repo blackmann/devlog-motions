@@ -61,6 +61,10 @@ class Dock extends Node {
   *makeActive(appIndex: number) {
     yield* this.indicatorsRef[appIndex].opacity(1, 0.5)
   }
+
+  *makeInactive(appIndex: number) {
+    yield* this.indicatorsRef[appIndex].opacity(0, 0.5)
+  }
 }
 
 export default Dock

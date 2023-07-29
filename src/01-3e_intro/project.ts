@@ -8,6 +8,7 @@ import softwareImport from './scenes/3d-software-import?scene'
 import materialInspect from './scenes/material-inspect?scene'
 import appConcepts from './scenes/3d-app-concepts?scene'
 import experiencedDevsOptions from './scenes/experienced-devs-options?scene'
+import conclusion from './scenes/conclusion?scene'
 
 import audio from './3e.mp3'
 
@@ -19,7 +20,8 @@ export default makeProject({
     softwareImport,
     materialInspect,
     appConcepts,
-    experiencedDevsOptions
+    experiencedDevsOptions,
+    conclusion,
     //
   ],
   audio,
