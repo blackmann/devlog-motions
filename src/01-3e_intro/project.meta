@@ -3,17 +3,17 @@
   "shared": {
     "background": "rgba(0,0,0,0)",
     "range": [
-      0.03333233333333333,
+      0,
       null
     ],
     "size": {
       "x": 1900,
       "y": 1440
     },
-    "audioOffset": 0
+    "audioOffset": 10.675862068965518
   },
   "preview": {
-    "fps": 30,
+    "fps": 60,
     "resolutionScale": 1
   },
   "rendering": {
@@ -24,7 +24,7 @@
       "name": "@motion-canvas/ffmpeg",
       "options": {
         "fastStart": true,
-        "includeAudio": true
+        "includeAudio": false
       }
     }
   }

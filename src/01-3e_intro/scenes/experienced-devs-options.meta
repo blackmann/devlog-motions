@@ -1,0 +1,30 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "mention3e",
+      "targetTime": 5.891067271434769
+    },
+    {
+      "name": "introends",
+      "targetTime": 24.671774201976405
+    },
+    {
+      "name": "appearanceends",
+      "targetTime": 52.15234335465446
+    },
+    {
+      "name": "outlinerstarts",
+      "targetTime": 67.60003350738923
+    },
+    {
+      "name": "exportstarts",
+      "targetTime": 82.3396047618123
+    },
+    {
+      "name": "featuresend",
+      "targetTime": 99.24280060877385
+    }
+  ],
+  "seed": 2346097440
+}

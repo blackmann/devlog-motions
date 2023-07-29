@@ -9,3 +9,7 @@
 	font-weight: 700;
 }
 
+@font-face {
+	font-family: "Calling Code";
+	src: url("/CallingCode-Regular.ttf");
+}

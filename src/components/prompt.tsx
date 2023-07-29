@@ -1,5 +1,5 @@
-import { Node, NodeProps, Rect, Txt } from '@motion-canvas/2d'
-import { createRef, easeOutBack, linear, loop, sequence } from '@motion-canvas/core'
+import { Node, NodeProps, Rect, Txt, initial, signal } from '@motion-canvas/2d'
+import { SimpleSignal, createRef, easeOutBack, linear, loop, sequence } from '@motion-canvas/core'
 
 interface PromptProps extends NodeProps {
   label: string
@@ -10,11 +10,15 @@ class Prompt extends Node {
   commandRef = createRef<Txt>()
   rectRef = createRef<Rect>()
 
+  @initial(2)
+  @signal()
+  public declare readonly waitTime: SimpleSignal<number, this>
+
   constructor({ label, ...props }: PromptProps) {
     super(props)
     this.add(
       <Rect layout direction="column" offsetX={-1}>
-        <Txt fill="#00ff22">{label}</Txt>
+        <Txt fill="#dfbefb">{label}</Txt>
         <Rect layout>
           <Txt fill="#eee" offsetX={-1} ref={this.commandRef}></Txt>
           <Txt fill="#eee" ref={this.blinkerRef}>

@@ -6,17 +6,17 @@ class ProgressBar extends Node {
 
   constructor(props: NodeProps) {
     super(props)
-    const gradient = new Gradient({
-      fromX: -160,
-      toX: 160,
-      stops: [
-        { offset: 0, color: 'orange' },
-        { offset: 0.75, color: 'aqua' },
-        { offset: 1, color: '#fefefe' },
-      ],
-    })
+    // const gradient = new Gradient({
+    //   fromX: -160,
+    //   toX: 160,
+    //   stops: [
+    //     { offset: 0, color: 'orange' },
+    //     { offset: 0.75, color: 'aqua' },
+    //     { offset: 1, color: '#fefefe' },
+    //   ],
+    // })
 
-    this.add(<Txt offsetX={-1} fill={gradient} ref={this.contentRef}></Txt>)
+    this.add(<Txt offsetX={-1} fill={"#dedede"} ref={this.contentRef}></Txt>)
   }
 
   *progress(time = 2) {
