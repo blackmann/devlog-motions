@@ -4,11 +4,10 @@ import {
   NodeProps,
   PossibleCanvasStyle,
   Rect,
+  Txt,
 } from '@motion-canvas/2d'
 import {
-  Color,
   Reference,
-  Signal,
   SimpleSignal,
   Vector2,
   createRef,
@@ -28,11 +27,13 @@ class Screen extends Node {
   dimension: Vector2
   private containerRef = createRef<Rect>()
   pixelSize: SimpleSignal<number, void>
+  originOffset: SimpleSignal<Vector2, void>
 
-  constructor({ dimension, pixelSize, ...props }: ScreenProps) {
+  constructor({ dimension, originOffset, pixelSize, ...props }: ScreenProps) {
     super(props)
     this.dimension = dimension
     this.pixelSize = createSignal(pixelSize)
+    this.originOffset = createSignal(originOffset || Vector2.zero)
 
     this.add(
       <Rect ref={this.containerRef}>
@@ -42,12 +43,22 @@ class Screen extends Node {
           height={() => this.pixelSize() * this.dimension.y}
           spacing={this.pixelSize()}
         />
+
+        {this.getAxisMarks('x')}
+        {this.getAxisMarks('y')}
       </Rect>
     )
   }
 
-  plot(x: number, y: number, fill: PossibleCanvasStyle): Reference<Rect> {
+  plot(
+    x: number,
+    y: number,
+    fill: PossibleCanvasStyle
+  ): Reference<Rect> | undefined {
     const ref = createRef<Rect>()
+
+    const plotx = () => (x + this.originOffset().x + 0.5) * this.pixelSize()
+    const ploty = () => (-y + this.originOffset().y + 0.5) * this.pixelSize()
 
     this.containerRef().add(
       <Rect
@@ -55,12 +66,79 @@ class Screen extends Node {
         ref={ref}
         width={this.pixelSize()}
         height={this.pixelSize()}
-        position={[(x + 0.5) * this.pixelSize(), (-y + 0.5) * this.pixelSize()]}
+        position={() => [plotx(), ploty()]}
       />
     )
 
     return ref
   }
+
+  private getAxisMarks(axis: 'x' | 'y') {
+    if (axis === 'x') {
+      return (
+        <Rect
+          layout
+          offsetX={-1}
+          position={() => {
+            const width = this.pixelSize() * this.dimension.x
+            const yOffset = this.pixelSize() * (this.originOffset().y + 1)
+
+            const p = [
+              this.containerRef().left().x - width / 2,
+              yOffset + this.pixelSize() / 2,
+            ] as [number, number]
+
+            return p
+          }}
+        >
+          {Array.from({ length: this.dimension.x }).map((_, i) => (
+            <Txt
+              fill="#666"
+              fontSize={20}
+              width={this.pixelSize()}
+              textAlign="center"
+              text={() => `${i - this.dimension.x / 2 - this.originOffset().x}`}
+            />
+          ))}
+        </Rect>
+      )
+    }
+
+    return (
+      <Rect
+        layout
+        direction="column"
+        offsetY={-1}
+        position={() => {
+          const height = this.pixelSize() * this.dimension.y
+          const xOffset = this.pixelSize() * (this.originOffset().x - 1)
+
+          const p = [
+            this.pixelSize() / 2 + xOffset,
+            this.containerRef().top().y - height / 2 + this.pixelSize() * 1/4 ,
+          ] as [number, number]
+
+          return p
+        }}
+      >
+        {Array.from({ length: this.dimension.y }).map((_, i) => (
+          <Txt
+            fill="#666"
+            fontSize={20}
+            width={this.pixelSize()}
+            height={this.pixelSize()}
+            textAlign={'center'}
+            text={() => {
+              const label = `${this.dimension.y / 2 - i + this.originOffset().y}`
+              return label === '-1' ? '' : label
+            }}
+          />
+        ))}
+      </Rect>
+    )
+  }
 }
+
+
 
 export default Screen
