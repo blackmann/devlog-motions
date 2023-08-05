@@ -6,7 +6,8 @@ export default defineConfig({
   plugins: [
     motionCanvas({
       project: [
-        './src/01-3e_intro/project.ts'
+        './src/01-3e_intro/3e-intro.ts',
+        './src/02-bresenham-line-drawing/bresenham.ts'
       ],
     }),
     ffmpeg(),
