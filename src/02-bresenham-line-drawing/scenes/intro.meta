@@ -1,0 +1,18 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "audiostarts",
+      "targetTime": 1.175945017182131
+    },
+    {
+      "name": "mentiondx",
+      "targetTime": 5.568728522336771
+    },
+    {
+      "name": "introends",
+      "targetTime": 17.89615745079664
+    }
+  ],
+  "seed": 231114457
+}

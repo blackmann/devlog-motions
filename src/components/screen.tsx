@@ -21,18 +21,22 @@ interface ScreenProps extends NodeProps {
   originOffset?: Vector2
 
   pixelSize: number
+
+  labelSize?: number
 }
 
 class Screen extends Node {
   dimension: Vector2
   private containerRef = createRef<Rect>()
+  labelSize: number
   pixelSize: SimpleSignal<number, void>
   originOffset: SimpleSignal<Vector2, void>
 
-  constructor({ dimension, originOffset, pixelSize, ...props }: ScreenProps) {
+  constructor({ dimension, labelSize = 20, originOffset, pixelSize, ...props }: ScreenProps) {
     super(props)
     this.dimension = dimension
     this.pixelSize = createSignal(pixelSize)
+    this.labelSize = labelSize
     this.originOffset = createSignal(originOffset || Vector2.zero)
 
     this.add(
@@ -73,6 +77,27 @@ class Screen extends Node {
     return ref
   }
 
+  line(start: Vector2, end: Vector2, fill: PossibleCanvasStyle) {
+    const dy = end.y - start.y
+    const dx = end.x - start.x
+    const m = dy / dx
+    let e = m - 1
+
+    let x = start.x
+    let y = start.y
+
+    while (x <= end.x) {
+      this.plot(x, y, fill)
+      x++
+      if (e >= 0) {
+        y++
+        e -= 1
+      }
+
+      e += m
+    }
+  }
+
   private getAxisMarks(axis: 'x' | 'y') {
     if (axis === 'x') {
       return (
@@ -94,7 +119,7 @@ class Screen extends Node {
           {Array.from({ length: this.dimension.x }).map((_, i) => (
             <Txt
               fill="#666"
-              fontSize={20}
+              fontSize={this.labelSize}
               width={this.pixelSize()}
               textAlign="center"
               text={() => `${i - this.dimension.x / 2 - this.originOffset().x}`}
@@ -124,7 +149,7 @@ class Screen extends Node {
         {Array.from({ length: this.dimension.y }).map((_, i) => (
           <Txt
             fill="#666"
-            fontSize={20}
+            fontSize={this.labelSize}
             width={this.pixelSize()}
             height={this.pixelSize()}
             textAlign={'center'}
