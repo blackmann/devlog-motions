@@ -1,5 +1,18 @@
 {
   "version": 0,
-  "timeEvents": [],
+  "timeEvents": [
+    {
+      "name": "saysixseven",
+      "targetTime": 4.629414965986394
+    },
+    {
+      "name": "startplotting",
+      "targetTime": 7.992680272108841
+    },
+    {
+      "name": "end",
+      "targetTime": 15.772979591836735
+    }
+  ],
   "seed": 2986533293
 }
